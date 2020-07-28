@@ -12,7 +12,7 @@ class MyContainer extends StatelessWidget{
       return Container(
         child:  Container(
           child: Text('Hello Wolrd !',textDirection:TextDirection.ltr,),
-          alignment: Alignment(0, 0),
+          alignment: Alignment(0, -1),
           width: 300,
           height: 300,
 //          decoration: BoxDecoration(

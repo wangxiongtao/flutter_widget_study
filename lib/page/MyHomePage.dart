@@ -18,7 +18,23 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Container();
+    return Center(
+        child: Container(
+          width: 300,
+          height: 400,
+          decoration: BoxDecoration(
+              border: Border.all()
+          ),
+          child: UnconstrainedBox(
+              child:ConstrainedBox(
+                  constraints:BoxConstraints(
+
+                  ),
+              )
+          ),
+
+        ),
+    );
   }
 }
 
