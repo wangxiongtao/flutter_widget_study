@@ -15,6 +15,9 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+
+模板配置路径在file->settings->editor-> File and Code Templates 里，选择 Files 一栏，点击左上角加号，新建名字
+
 StatefulWidget 模板配置：
 
 ```import 'package:flutter/material.dart';
