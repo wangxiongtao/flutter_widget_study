@@ -83,7 +83,8 @@ class ${class} extends StatelessWidget {
 ```
 快捷键自定义为 stw2 是生成StatefulWidget代码 配置为
 
-```class  extends StatefulWidget {
+```
+class  extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return MyState();
