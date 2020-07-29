@@ -20,7 +20,8 @@ samples, guidance on mobile development, and a full API reference.
 
 StatefulWidget 模板配置：
 
-```import 'package:flutter/material.dart';
+```
+import 'package:flutter/material.dart';
 /// 创建时间：${DATE} 
 /// 作者：${USER}
 #set( $items = $NAME.split("_") )
@@ -55,7 +56,8 @@ class _${class}State extends State<${class}> {
 
 
 StatelessWidget模板配置
-```import 'package:flutter/material.dart';
+```
+import 'package:flutter/material.dart';
 /// 创建时间：${DATE} 
 /// 作者：${USER}
 #set( $items = $NAME.split("_") )
@@ -77,7 +79,8 @@ class ${class} extends StatelessWidget {
 快捷键生成代码模板配置路径在File -> Settings -> Editor -> Live Templates 里，点击左上角加号，新建
 快捷键自定义为 stw1 是生成StatelessWidget代码 配置为
 
-```class  extends StatelessWidget{
+```
+class  extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
