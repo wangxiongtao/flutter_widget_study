@@ -16,7 +16,7 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 
-模板配置路径在file->settings->editor-> File and Code Templates 里，选择 Files 一栏，点击左上角加号，新建名字
+模板配置路径在file->settings->editor-> File and Code Templates 里，选择 Files 一栏，点击左上角加号，新建
 
 StatefulWidget 模板配置：
 
@@ -68,4 +68,48 @@ class ${class} extends StatelessWidget {
   }
 }
 ```
+
+
+快捷键生成代码模板配置路径在File -> Settings -> Editor -> Live Templates 里，点击左上角加号，新建
+快捷键自定义为 stw1 是生成StatelessWidget代码 配置为
+
+```class  extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
+  }
+}
+```
+快捷键自定义为 stw2 是生成StatefulWidget代码 配置为
+
+```class  extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return MyState();
+  }
+}
+
+class MyState extends State<> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+}
+```
+
+
 
