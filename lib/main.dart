@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dawn_app/page/MyContainer.dart';
+import 'package:flutter_dawn_app/page/MyImage.dart';
 import 'package:flutter_dawn_app/page/MyText.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -9,6 +10,7 @@ class MyList extends StatelessWidget{
   MyList(){
     list.add("MyContainer");
     list.add("MyText");
+    list.add("MyImage");
   }
   @override
   Widget build(BuildContext context) {
@@ -50,6 +52,9 @@ _clickItem(BuildContext context,int index){
       break;
     case 1:
       builder=(context)=>new MyText();
+      break;
+    case 2:
+      builder=(context)=>new MyImage();
       break;
   }
   Navigator.push(context, new MaterialPageRoute(builder: builder));

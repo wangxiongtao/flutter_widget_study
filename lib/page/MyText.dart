@@ -69,21 +69,10 @@ import 'package:flutter_dawn_app/page/BaseMaterialApp.dart';
 //height: 2.0),
 //),
 
-
-
-
-
-
-
-
-
-
-
-
-
 class MyText extends StatelessWidget {
   String s = "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈11112222222233啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦0000";
   String s1 = "哈哈哈哈native_哈哈哈哈window_ap哈哈哈哈i_disconnect InputMethodManagerActivityRecordFinishing";
+  String s111 = "急啊纠结啊";
 
   @override
   Widget build(BuildContext context) {
