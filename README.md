@@ -33,9 +33,9 @@ import 'package:flutter/material.dart';
 class ${NAME} extends StatefulWidget {
   ${NAME}({Key key}) : super(key: key);
 @override
-  _${NAME} createState() => _${NAME}();
+  _${NAME}State createState() => _${NAME}State();
 }
-class _${NAME}  extends State<${NAME}> {
+class _${NAME}State  extends State<${NAME}> {
  @override
   void initState() {
     // TODO: implement initState
