@@ -21,6 +21,8 @@ samples, guidance on mobile development, and a full API reference.
 StatefulWidget 模板配置：
 
 ```import 'package:flutter/material.dart';
+/// 创建时间：${DATE} 
+/// 作者：${USER}
 #set( $items = $NAME.split("_") )
 #set( $class = "" )
 #set( $item = "" )
@@ -54,6 +56,8 @@ class _${class}State extends State<${class}> {
 
 StatelessWidget模板配置
 ```import 'package:flutter/material.dart';
+/// 创建时间：${DATE} 
+/// 作者：${USER}
 #set( $items = $NAME.split("_") )
 #set( $class = "" )
 #set( $item = "" )
