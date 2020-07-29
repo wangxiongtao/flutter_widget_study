@@ -45,5 +45,5 @@ class _${class}State extends State<${class}> {
     // TODO: implement dispose
     super.dispose();
   }
-}```
+}``
 
