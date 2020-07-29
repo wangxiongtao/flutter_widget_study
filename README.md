@@ -17,7 +17,7 @@ samples, guidance on mobile development, and a full API reference.
 
 StatefulWidget 模板配置：
 
-import 'package:flutter/material.dart';
+```import 'package:flutter/material.dart';
 #set( $items = $NAME.split("_") )
 #set( $class = "" )
 #set( $item = "" )
@@ -45,5 +45,5 @@ class _${class}State extends State<${class}> {
     // TODO: implement dispose
     super.dispose();
   }
-}
+}```
 
