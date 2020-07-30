@@ -1,18 +1,41 @@
 import 'package:flutter/material.dart';
 
-class BaseMaterialApp extends StatelessWidget{
+class BaseMaterialApp extends StatelessWidget {
   final Widget body;
 
   const BaseMaterialApp({Key key, this.body}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return MaterialApp(
-      home:Scaffold(
-        appBar: new AppBar(title: new Text("")),
-        body:body
+      theme: ThemeData(
+        primaryColor: Colors.deepOrange,
       ),
+      home: Scaffold(
+          appBar: new AppBar(
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            title: new Text("我只是标题",style:TextStyle(fontSize: 20)),
+            centerTitle: true,
+            elevation: 0.5,
+            actions: [
+              // 非隐藏的菜单
+              new IconButton(
+                  icon: new Icon(Icons.map),
+                  onPressed: () {}
+              ),
+//              new IconButton(
+//                  icon: new Icon(Icons.scanner),
+//                  onPressed: () {}
+//              ),
+            ],
+          ),
+          body: body),
     );
   }
-
 }

@@ -31,6 +31,7 @@ class _MyListViewState extends State<MyListView> {
   ScrollController _controller = new ScrollController();
   bool showToTopBtn = false; //是否显示“返回到顶部”按钮
   final List<DataBean>list=[];
+   String text="";
 
   @override
   void initState() {
@@ -45,6 +46,9 @@ class _MyListViewState extends State<MyListView> {
       print("_controller.offset..底部位置===${_controller.position.maxScrollExtent}");
 
       Fluttertoast.showToast(msg:"滑动的距离==${_controller.offset}");
+      setState(() {
+        text="${_controller.offset}";
+      });
 //      if (_controller.offset < 1000 && showToTopBtn) {
 //        setState(() {
 //          showToTopBtn = false;
@@ -64,7 +68,7 @@ class _MyListViewState extends State<MyListView> {
       body:Column(
         children: [
           RaisedButton(
-            child:  Text("固定头部",style: TextStyle(height: 4),),
+            child:  Text("${text}\n固定头部",style: TextStyle(height: 2),),
             onPressed: ()=>{
               setState((){
 //                list.insert(0, DataBean("title123", "namekkkk"));
@@ -73,9 +77,38 @@ class _MyListViewState extends State<MyListView> {
 
             },
           ),
+          RaisedButton(
+            child:  Text("回到头部",style: TextStyle(height: 2),),
+            onPressed: ()=>{
+            _controller.animateTo(
+                10,
+                duration: Duration(milliseconds: 200),
+                curve: Curves.ease
+            )
+
+            },
+          ),
 
           Divider(color: Colors.orange,height: 10,thickness:10),
-          Expanded(child: _getListView(),),
+          Expanded(
+            child: Row(
+              children: [
+                Expanded(child: _getListView(_controller),),
+                Expanded(
+                  child: NotificationListener<ScrollNotification>(
+                    child: _getListView(),
+                    onNotification:(ScrollNotification notification){
+                      double progress = notification.metrics.pixels /
+                          notification.metrics.maxScrollExtent;
+                      print("_controller.progress..1111===${progress}"); //打印滚动位置
+                      print("_controller.maxScrollExtent..1111===${notification.metrics.maxScrollExtent}"); //打印滚动位置
+                      return false;
+                    }
+                  )
+                ),
+              ],
+            ),
+          ),
 
         ],
       ),
@@ -89,14 +122,14 @@ class _MyListViewState extends State<MyListView> {
     _controller.dispose();
     super.dispose();
   }
-  Widget _getListView(){
+  Widget _getListView([ScrollController controller]){
     return ListView.separated(
       separatorBuilder:(context, index){
         return Divider(color: Colors.red,height: 0,thickness:0);
       },
       itemCount: list.length,
       itemBuilder:(context, index)=> _getItemBuilder(list[index]),
-      controller: _controller,
+      controller: controller,
 
     );
   }

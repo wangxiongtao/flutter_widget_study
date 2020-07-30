@@ -1,4 +1,7 @@
+
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_dawn_app/page/MyButton.dart';
 import 'package:flutter_dawn_app/page/MyContainer.dart';
 import 'package:flutter_dawn_app/page/MyIcon.dart';
@@ -7,7 +10,10 @@ import 'package:flutter_dawn_app/page/MyListView.dart';
 import 'package:flutter_dawn_app/page/MyText.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-void main() =>runApp(new MyList());
+void main() {
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+  runApp(new MyList());
+}
 class MyList extends StatelessWidget{
   final List<String> list=[];
   MyList(){
