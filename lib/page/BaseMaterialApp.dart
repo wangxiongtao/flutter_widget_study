@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class BaseMaterialApp extends StatelessWidget {
   final Widget body;
+  final Widget bottom;
 
-  const BaseMaterialApp({Key key, this.body}) : super(key: key);
+  const BaseMaterialApp({Key key, this.body,this.bottom}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,7 @@ class BaseMaterialApp extends StatelessWidget {
                 Navigator.pop(context);
               },
             ),
+            bottom: bottom,
             title: new Text("我只是标题",style:TextStyle(fontSize: 20)),
             centerTitle: true,
             elevation: 0.5,

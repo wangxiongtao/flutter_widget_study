@@ -22,7 +22,7 @@ class MyImage extends StatelessWidget {
               crossAxisAlignment:CrossAxisAlignment.start,
                 children: [
                   Image.asset("images/icon_logo.png",),
-                  Image.asset("images/icon_logo.png",width: 100,),
+                  Image.asset("images/failed_insurance.png",width: 100,),
                   Image.network("https://static.shenzhoubb.com/images/ad/banner/banner_ZCZSHD_02.png",),
                   Image.network("https://static.shenzhoubb.com/images/ad/banner/banner_ZCZSHD_02.png",),
                   CachedNetworkImage(

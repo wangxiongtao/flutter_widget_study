@@ -47,7 +47,7 @@ class _MyListViewState extends State<MyListView> {
 
       Fluttertoast.showToast(msg:"滑动的距离==${_controller.offset}");
       setState(() {
-        text="${_controller.offset}";
+        setText();
       });
 //      if (_controller.offset < 1000 && showToTopBtn) {
 //        setState(() {
@@ -71,8 +71,9 @@ class _MyListViewState extends State<MyListView> {
             child:  Text("${text}\n固定头部",style: TextStyle(height: 2),),
             onPressed: ()=>{
               setState((){
+                addList();
 //                list.insert(0, DataBean("title123", "namekkkk"));
-                list.insert(0, null);
+
             })
 
             },
@@ -114,7 +115,14 @@ class _MyListViewState extends State<MyListView> {
       ),
     );
   }
-
+   void addList(){
+    print("==setState==addList===");
+     list.insert(0, null);
+   }
+   void setText(){
+    print("==setState==setText===");
+    text="${_controller.offset}";
+   }
   @override
   void dispose() {
     // TODO: implement dispose

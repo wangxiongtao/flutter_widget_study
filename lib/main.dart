@@ -4,9 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dawn_app/page/MyButton.dart';
 import 'package:flutter_dawn_app/page/MyContainer.dart';
+import 'package:flutter_dawn_app/page/MyGridView.dart';
 import 'package:flutter_dawn_app/page/MyIcon.dart';
 import 'package:flutter_dawn_app/page/MyImage.dart';
+import 'package:flutter_dawn_app/page/MyInput.dart';
 import 'package:flutter_dawn_app/page/MyListView.dart';
+import 'package:flutter_dawn_app/page/MyTabBar.dart';
+import 'package:flutter_dawn_app/page/MyTabBarDefault.dart';
 import 'package:flutter_dawn_app/page/MyText.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -23,6 +27,28 @@ class MyList extends StatelessWidget{
     list.add("MyICon");
     list.add("MyButton");
     list.add("MyListView");
+    list.add("MyGridView");
+    list.add("MyInput");
+    list.add("MyTabBar");
+    list.add("MyTabBarDefault");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    list.add("Slivers组件");
+    list.add("下拉刷新组件");
+
   }
   @override
   Widget build(BuildContext context) {
@@ -76,6 +102,18 @@ _clickItem(BuildContext context,int index){
       break;
     case 5:
       builder=(context)=>new MyListView();
+      break;
+    case 6:
+      builder=(context)=>new MyGridView();
+      break;
+    case 7:
+      builder=(context)=>new MyInput();
+      break;
+    case 8:
+      builder=(context)=>new MyTabBar();
+      break;
+    case 9:
+      builder=(context)=>new MyTabBarDefault();
       break;
   }
   Navigator.push(context, new MaterialPageRoute(builder: builder));
