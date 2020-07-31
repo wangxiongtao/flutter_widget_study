@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dawn_app/page/MyButton.dart';
 import 'package:flutter_dawn_app/page/MyContainer.dart';
+import 'package:flutter_dawn_app/page/MyCustomerTabBar.dart';
 import 'package:flutter_dawn_app/page/MyGridView.dart';
 import 'package:flutter_dawn_app/page/MyIcon.dart';
 import 'package:flutter_dawn_app/page/MyImage.dart';
@@ -31,6 +32,7 @@ class MyList extends StatelessWidget{
     list.add("MyInput");
     list.add("MyTabBar");
     list.add("MyTabBarDefault");
+    list.add("MyCustomerTabBar");
 
 
 
@@ -114,6 +116,9 @@ _clickItem(BuildContext context,int index){
       break;
     case 9:
       builder=(context)=>new MyTabBarDefault();
+      break;
+    case 10:
+      builder=(context)=>new MyCustomerTabBar();
       break;
   }
   Navigator.push(context, new MaterialPageRoute(builder: builder));
