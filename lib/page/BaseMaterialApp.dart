@@ -9,6 +9,7 @@ class BaseMaterialApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    print("==MaterialApp=build=====>");
     return MaterialApp(
       theme: ThemeData(
         primaryColor: Colors.deepOrange,

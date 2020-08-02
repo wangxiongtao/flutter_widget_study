@@ -1,7 +1,8 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dawn_app/page/MyBanner.dart';
+import 'package:flutter_dawn_app/page/MyBottomBar.dart';
+import 'package:flutter_dawn_app/page/MyBottomNavigationBar.dart';
 import 'package:flutter_dawn_app/page/MyButton.dart';
 import 'package:flutter_dawn_app/page/MyContainer.dart';
 import 'package:flutter_dawn_app/page/MyCustomerTabBar.dart';
@@ -33,6 +34,10 @@ class MyList extends StatelessWidget{
     list.add("MyTabBar");
     list.add("MyTabBarDefault");
     list.add("MyCustomerTabBar");
+    list.add("轮播图组件");
+    list.add("MyBottomNavigationBar");
+    list.add("MyBottomBar");
+
 
 
 
@@ -119,6 +124,15 @@ _clickItem(BuildContext context,int index){
       break;
     case 10:
       builder=(context)=>new MyCustomerTabBar();
+      break;
+    case 11:
+      builder=(context)=>new MyBanner();
+      break;
+    case 12:
+      builder=(context)=>new MyBottomNavigationBar();
+      break;
+    case 13:
+      builder=(context)=>MyBottomBar();
       break;
   }
   Navigator.push(context, new MaterialPageRoute(builder: builder));
