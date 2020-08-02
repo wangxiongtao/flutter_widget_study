@@ -88,11 +88,16 @@ class _MyBannerState extends State<MyBanner> {
   }
 
   Widget _getBanner() {
+    if(images.length==0){
+      return SizedBox(width: 0,height: 0,);
+    }
     return new SizedBox(
       height: 140,
       child: Swiper(
-        key: UniqueKey(),
-        duration: 5000,
+        autoplayDelay: 5000,
+
+
+
 
 //      scale:0.8,
 //      fade:0.8,
