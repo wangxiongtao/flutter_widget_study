@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dawn_app/page/MyBanner.dart';
 import 'package:flutter_dawn_app/page/MyBottomBar.dart';
@@ -11,12 +12,17 @@ import 'package:flutter_dawn_app/page/MyIcon.dart';
 import 'package:flutter_dawn_app/page/MyImage.dart';
 import 'package:flutter_dawn_app/page/MyInput.dart';
 import 'package:flutter_dawn_app/page/MyListView.dart';
+import 'package:flutter_dawn_app/page/MyNestScrollView.dart';
+import 'package:flutter_dawn_app/page/MyProgressIndicator.dart';
+import 'package:flutter_dawn_app/page/MySlivers.dart';
+import 'package:flutter_dawn_app/page/MySomeBox.dart';
 import 'package:flutter_dawn_app/page/MyTabBar.dart';
 import 'package:flutter_dawn_app/page/MyTabBarDefault.dart';
 import 'package:flutter_dawn_app/page/MyText.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 void main() {
+//  debugPaintSizeEnabled=true;
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   runApp(new MyList());
 }
@@ -37,23 +43,10 @@ class MyList extends StatelessWidget{
     list.add("轮播图组件");
     list.add("MyBottomNavigationBar");
     list.add("MyBottomBar");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    list.add("MySomeBox");
+    list.add("MyProgressIndicator");
     list.add("Slivers组件");
+    list.add("MyNestScrollView");
     list.add("下拉刷新组件");
 
   }
@@ -133,6 +126,18 @@ _clickItem(BuildContext context,int index){
       break;
     case 13:
       builder=(context)=>MyBottomBar();
+      break;
+    case 14:
+      builder=(context)=>MySomeBox();
+      break;
+    case 15:
+      builder=(context)=>MyProgressIndicator();
+      break;
+    case 16:
+      builder=(context)=>MySlivers();
+      break;
+    case 17:
+      builder=(context)=>MyNestScrollView();
       break;
   }
   Navigator.push(context, new MaterialPageRoute(builder: builder));

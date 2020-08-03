@@ -107,7 +107,7 @@ class _MyBannerState extends State<MyBanner> {
         itemBuilder: (c, i) {
           return CachedNetworkImage(
             width: 120,
-            fit: BoxFit.fitWidth,
+            fit: BoxFit.cover,
             imageUrl: images[i],
             placeholder: (context, url) => CircularProgressIndicator(),
             errorWidget: (context, url, error) => Icon(Icons.error),

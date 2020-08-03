@@ -99,9 +99,17 @@ class MyState extends State<Page1> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Container(
-      color: Colors.deepPurple,
-    );
+    return SliverFixedExtentList(
+        itemExtent: 50.0,
+        delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
+          //创建列表项
+          return Container(
+            alignment: Alignment.center,
+            color: Colors.lightBlue[100 * (index % 9)],
+            child: new Text('list item $index'),
+          );
+        }, childCount: 50 //50个列表项;
+        ));
   }
 
   @override
@@ -151,9 +159,17 @@ class MyState2 extends State<Page2> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Container(
-      color: Colors.lightGreen,
-    );
+    return SliverFixedExtentList(
+        itemExtent: 50.0,
+        delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
+          //创建列表项
+          return Container(
+            alignment: Alignment.center,
+            color: Colors.lightBlue[100 * (index % 9)],
+            child: new Text('list item $index'),
+          );
+        }, childCount: 150 //50个列表项;
+        ));
   }
 
   @override
