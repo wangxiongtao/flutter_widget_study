@@ -1,9 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dawn_app/page/BaseMaterialApp.dart';
 import 'package:flutter_dawn_app/page/MyBanner.dart';
 import 'package:flutter_dawn_app/page/MyBottomNavigationBar.dart';
-import 'package:flutter_dawn_app/page/MyContainer.dart';
 import 'package:flutter_dawn_app/page/nesttab/NestTabBarViewItem.dart';
+import 'package:flutter_dawn_app/util/http/HttpUtil.dart';
 
 class MyNestScrollView extends StatefulWidget {
   MyNestScrollView({Key key}) : super(key: key);
@@ -41,7 +42,7 @@ class _MyNestScrollviewState extends State<MyNestScrollView>
           },
           body: TabBarView(
             children: <Widget>[
-              NestTabBarViewItem("1", Page1()),
+              NestTabBarViewItem("1", TabPage1()),
               NestTabBarViewItem("2", Page2()),
             ],
           ),
@@ -164,7 +165,7 @@ class _MyNestScrollviewState extends State<MyNestScrollView>
 
   _getHeadbuilder(BuildContext context, bool innerBoxIsScrolled) {
     return <Widget>[
-    _head2(),
+//    _head2(),
       _head(),
       _head(),
       _head(),
@@ -188,6 +189,59 @@ class _MyNestScrollviewState extends State<MyNestScrollView>
         ),
       )
     ];
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+}
+
+
+
+
+class TabPage1 extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return MyTabPage1State();
+  }
+
+
+}
+
+class MyTabPage1State extends State<TabPage1> {
+  @override
+    initState() {
+    // TODO: implement initState
+    super.initState();
+    _toHttp();
+
+  }
+
+  _toHttp() async {
+    Response response= await HttpUtil().post(HttpUtil.url,{"gggg":"asdsafdsafdsa"});
+    print("==http==response==$response");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return _getList(10);
+  }
+  Widget _getList(childCount) {
+    return SliverFixedExtentList(
+        itemExtent: 50.0,
+        delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
+          //创建列表项
+          return Container(
+            alignment: Alignment.center,
+            color: Colors.lightBlue[100 * (index % 9)],
+            child: new Text('list item $index'),
+          );
+        }, childCount: childCount //50个列表项;
+        ));
   }
 
   @override
