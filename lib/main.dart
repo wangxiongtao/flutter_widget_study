@@ -7,18 +7,22 @@ import 'package:flutter_dawn_app/page/MyBottomNavigationBar.dart';
 import 'package:flutter_dawn_app/page/MyButton.dart';
 import 'package:flutter_dawn_app/page/MyContainer.dart';
 import 'package:flutter_dawn_app/page/MyCustomerTabBar.dart';
+import 'package:flutter_dawn_app/page/MyDialog.dart';
 import 'package:flutter_dawn_app/page/MyGridView.dart';
 import 'package:flutter_dawn_app/page/MyIcon.dart';
 import 'package:flutter_dawn_app/page/MyImage.dart';
+import 'package:flutter_dawn_app/page/MyInheritedWidget.dart';
 import 'package:flutter_dawn_app/page/MyInput.dart';
 import 'package:flutter_dawn_app/page/MyListView.dart';
 import 'package:flutter_dawn_app/page/MyNestScrollView.dart';
 import 'package:flutter_dawn_app/page/MyProgressIndicator.dart';
+import 'package:flutter_dawn_app/page/MyProvider.dart';
 import 'package:flutter_dawn_app/page/MySlivers.dart';
 import 'package:flutter_dawn_app/page/MySomeBox.dart';
 import 'package:flutter_dawn_app/page/MyTabBar.dart';
 import 'package:flutter_dawn_app/page/MyTabBarDefault.dart';
 import 'package:flutter_dawn_app/page/MyText.dart';
+import 'package:flutter_dawn_app/util/ToastUtil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 void main() {
@@ -26,6 +30,7 @@ void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   runApp(new MyList());
 }
+
 class MyList extends StatelessWidget{
   final List<String> list=[];
   MyList(){
@@ -47,6 +52,9 @@ class MyList extends StatelessWidget{
     list.add("MyProgressIndicator");
     list.add("Slivers组件");
     list.add("MyNestScrollView");
+    list.add("MyInheritedWidget");
+    list.add("Provider跨组件状态共享");
+    list.add("MyDialog");
     list.add("下拉刷新组件");
 
   }
@@ -56,31 +64,43 @@ class MyList extends StatelessWidget{
     return MaterialApp(
       home: Scaffold(
         appBar: new AppBar(title: new Text("DEMO"),backgroundColor:Colors.orangeAccent),
-        body: ListView.separated(
-            itemCount:list.length,
-            separatorBuilder:(context, index){
-              return Divider(color: Colors.blue,height: 5,thickness:5);
-            },
-            itemBuilder: (context, index){
-              String item=list[index];
-              Widget w=InkWell(
-                onTap: ()=>{
-                  _clickItem(context,index)
-                },
-                child: Container(
-                  height: 50,
-                  alignment: Alignment(-1,0),
-
-                  child: Text(item,style:TextStyle(backgroundColor: Colors.deepOrangeAccent),),
-                )
-              );
-              return w;
-            }) ,
+        body:WillPopScope(
+            child: _getListView(),
+          onWillPop: ()async{
+              ToastUtil.toast("clickBack");
+            return false;//false不执行返回操作
+          },
+        ) ,
       ),
     );
   }
+  Widget _getListView(){
+    return ListView.separated(
+        itemCount:list.length,
+        separatorBuilder:(context, index){
+          return Divider(color: Colors.blue,height: 5,thickness:5);
+        },
+        itemBuilder: (context, index){
+          String item=list[index];
+          Widget w=InkWell(
+              onTap: ()=>{
+                _clickItem(context,index)
+              },
+              child: Container(
+                height: 50,
+                alignment: Alignment(-1,0),
+
+                child: Text(item,style:TextStyle(backgroundColor: Colors.deepOrangeAccent),),
+              )
+          );
+          return w;
+        });
+  }
 
 }
+
+
+
 _clickItem(BuildContext context,int index){
   Fluttertoast.showToast(msg:"index==${index}");
   WidgetBuilder builder;
@@ -138,6 +158,15 @@ _clickItem(BuildContext context,int index){
       break;
     case 17:
       builder=(context)=>MyNestScrollView();
+      break;
+    case 18:
+      builder=(context)=>MyInheritedWidget();
+      break;
+    case 19:
+      builder=(context)=>MyProvider();
+      break;
+    case 20:
+      builder=(context)=>MyDialog();
       break;
   }
   Navigator.push(context, new MaterialPageRoute(builder: builder));
