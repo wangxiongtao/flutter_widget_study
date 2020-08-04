@@ -17,6 +17,7 @@ import 'package:flutter_dawn_app/page/MyListView.dart';
 import 'package:flutter_dawn_app/page/MyNestScrollView.dart';
 import 'package:flutter_dawn_app/page/MyProgressIndicator.dart';
 import 'package:flutter_dawn_app/page/MyProvider.dart';
+import 'package:flutter_dawn_app/page/MyPullToRefresh.dart';
 import 'package:flutter_dawn_app/page/MySlivers.dart';
 import 'package:flutter_dawn_app/page/MySomeBox.dart';
 import 'package:flutter_dawn_app/page/MyTabBar.dart';
@@ -167,6 +168,9 @@ _clickItem(BuildContext context,int index){
       break;
     case 20:
       builder=(context)=>MyDialog();
+      break;
+    case 21:
+      builder=(context)=>MyPullToRefresh();
       break;
   }
   Navigator.push(context, new MaterialPageRoute(builder: builder));
