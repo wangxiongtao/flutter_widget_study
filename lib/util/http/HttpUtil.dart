@@ -22,6 +22,7 @@ class HttpUtil{
     _dio.interceptors.add(HttpInterceptor());
     _dio.interceptors.add(LogInterceptor(responseBody: true,requestBody: true)); //开启请求日志
   }
+  Dio get dio=>_dio;
   //  {
 //  /// Http method.
 //  String method;

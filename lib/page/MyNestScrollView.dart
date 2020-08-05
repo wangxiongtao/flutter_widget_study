@@ -175,6 +175,7 @@ class _MyNestScrollviewState extends State<MyNestScrollView>
         sliver: SliverAppBar(
           pinned: true,
           toolbarHeight: 0,
+
           bottom: TabBar(
             indicatorColor: Colors.black,
             indicatorSize: TabBarIndicatorSize.label,

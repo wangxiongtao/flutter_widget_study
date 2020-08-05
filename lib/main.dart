@@ -13,11 +13,13 @@ import 'package:flutter_dawn_app/page/MyIcon.dart';
 import 'package:flutter_dawn_app/page/MyImage.dart';
 import 'package:flutter_dawn_app/page/MyInheritedWidget.dart';
 import 'package:flutter_dawn_app/page/MyInput.dart';
+import 'package:flutter_dawn_app/page/MyLifecycle.dart';
 import 'package:flutter_dawn_app/page/MyListView.dart';
 import 'package:flutter_dawn_app/page/MyNestScrollView.dart';
 import 'package:flutter_dawn_app/page/MyProgressIndicator.dart';
 import 'package:flutter_dawn_app/page/MyProvider.dart';
 import 'package:flutter_dawn_app/page/MyPullToRefresh.dart';
+import 'package:flutter_dawn_app/page/MyRouter.dart';
 import 'package:flutter_dawn_app/page/MySlivers.dart';
 import 'package:flutter_dawn_app/page/MySomeBox.dart';
 import 'package:flutter_dawn_app/page/MyTabBar.dart';
@@ -25,6 +27,7 @@ import 'package:flutter_dawn_app/page/MyTabBarDefault.dart';
 import 'package:flutter_dawn_app/page/MyText.dart';
 import 'package:flutter_dawn_app/util/ToastUtil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:page_life_cycle/page_life_cycle.dart';
 
 void main() {
 //  debugPaintSizeEnabled=true;
@@ -57,12 +60,20 @@ class MyList extends StatelessWidget{
     list.add("Provider跨组件状态共享");
     list.add("MyDialog");
     list.add("下拉刷新组件");
+    list.add("router-页面跳转以及返回");
+    list.add("MyLifecycle");
 
   }
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return MaterialApp(
+        navigatorObservers: [PageNavigatorObserver()],
+        routes:<String, WidgetBuilder>{
+          '/MyRouter': (BuildContext context) => MyRouter(),
+          '/MiddlePage': (BuildContext context) => MiddlePage(),
+          '/MyLifecycle': (BuildContext context) => MyLifecycle(),
+        },
       home: Scaffold(
         appBar: new AppBar(title: new Text("DEMO"),backgroundColor:Colors.orangeAccent),
         body:WillPopScope(
@@ -171,6 +182,14 @@ _clickItem(BuildContext context,int index){
       break;
     case 21:
       builder=(context)=>MyPullToRefresh();
+      break;
+    case 22:
+      builder=(context)=>MyRouter();
+//      Navigator.pushNamed(context, "/MyRouter");
+      break;
+    case 23:
+      builder=(context)=>MyLifecycle();
+//      Navigator.pushNamed(context, "/MyLifecycle");
       break;
   }
   Navigator.push(context, new MaterialPageRoute(builder: builder));
