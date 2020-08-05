@@ -38,7 +38,7 @@ dependencies:
   pull_to_refresh: any
   flutter_easyrefresh: any
   page_life_cycle: any
-  lifecycle_state: any
+  flutter_page_tracker: any
 
 
 

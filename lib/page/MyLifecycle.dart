@@ -1,21 +1,24 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dawn_app/page/BaseMaterialApp.dart';
-import 'package:flutter_dawn_app/util/http/HttpUtil.dart';
-import 'package:flutter_dawn_app/util/http/RestClient.dart';
-import 'package:lifecycle_state/lifecycle_state.dart';
-import 'package:page_life_cycle/page_life_cycle.dart';
+import 'package:flutter_dawn_app/util/RouteObserverUtil.dart';
+import 'package:flutter_dawn_app/util/my_lifecycle_state.dart';
+import 'package:flutter_page_tracker/flutter_page_tracker.dart';
+
+import '../main.dart';
+
 
 /// 创建时间：2020/8/5 
 /// 作者：Dawn
-class MyLifecycle extends StatefulWidget with WidgetsBindingObserver  {
+class MyLifecycle extends StatefulWidget{
   MyLifecycle({Key key}) : super(key: key);
 
   @override
   _MyLifecycleState createState() => _MyLifecycleState();
 }
 
-class _MyLifecycleState extends LifecycleState<MyLifecycle>{
+class _MyLifecycleState extends State<MyLifecycle> with RouteAware{
+
   @override
   void initState() {
     // TODO: implement initState
@@ -51,37 +54,37 @@ class _MyLifecycleState extends LifecycleState<MyLifecycle>{
 
 
 
-  @override
-  void onResume() {
-    // TODO: implement onResume
-    super.onResume();
-    print("==AppLifecycleState===>onResume");
-  }
-
-  @override
-  void onPause() {
-    // TODO: implement onPause
-    super.onPause();
-    print("==AppLifecycleState===>onPause");
-  }
-
-
+//  @override
+//  void didPageView() {
+//    super.didPageView();
+//    // 发送页面露出事件
+//    print("==AppLifecycleState===>didPageView");
+//  }
+//
+//  @override
+//  void didPageExit() {
+//    super.didPageExit();
+//    // 发送页面离开事件
+//    print("==AppLifecycleState===>didPageExit");
+//  }
 
 
 
 
-  @override
-  Future<bool> didPopRoute() {
-    // TODO: implement didPopRoute
-    print("==AppLifecycleState===>didPopRoute");
-    return super.didPopRoute();
-  }
-  @override
-  Future<bool> didPushRoute(String route) {
-    // TODO: implement didPushRoute
-    print("==AppLifecycleState===>didPushRoute==$route");
-    return super.didPushRoute(route);
-  }
+
+
+//  @override
+//  Future<bool> didPopRoute() {
+//    // TODO: implement didPopRoute
+//    print("==AppLifecycleState===>didPopRoute");
+//    return super.didPopRoute();
+//  }
+//  @override
+//  Future<bool> didPushRoute(String route) {
+//    // TODO: implement didPushRoute
+//    print("==AppLifecycleState===>didPushRoute==$route");
+//    return super.didPushRoute(route);
+//  }
 
 // @override
 //  void onShow() {
@@ -109,8 +112,9 @@ class _MyLifecycleState extends LifecycleState<MyLifecycle>{
 //  }
   @override
   Widget build(BuildContext context) {
-    print("==AppLifecycleState===>build");
+    print("==AppLifecycleState===>build==${RouteObserverUtil.routeObserver}");
     return BaseMaterialApp(
+
       body: RaisedButton(
         child:Text("1111") ,
         onPressed:(){
@@ -120,21 +124,13 @@ class _MyLifecycleState extends LifecycleState<MyLifecycle>{
     );
   }
 
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    print("==AppLifecycleState===>$state---this---${this}");
-  }
-  @override
-  void didUpdateWidget(MyLifecycle oldWidget) {
-    // TODO: implement didUpdateWidget
-    super.didUpdateWidget(oldWidget);
-    print("==AppLifecycleState===>didUpdateWidget");
-  }
+
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
     print("==AppLifecycleState===>didChangeDependencies");
+    MyList.observer.subscribe(this, ModalRoute.of(context)); //
   }
   @override
   void deactivate() {
@@ -151,4 +147,29 @@ class _MyLifecycleState extends LifecycleState<MyLifecycle>{
     print("==AppLifecycleState===>dispose");
 
   }
+  @override
+  void didPush() {
+    // TODO: implement didPush
+    super.didPush();
+    print("==AppLifecycleState===>didPush");
+  }
+  @override
+  void didPop() {
+    // TODO: implement didPop
+    super.didPop();
+    print("==AppLifecycleState===>didPop");
+  }
+  @override
+  void didPopNext() {
+    // TODO: implement didPopNext
+    super.didPopNext();
+    print("==AppLifecycleState===>didPopNext");
+  }
+  @override
+  void didPushNext() {
+    // TODO: implement didPushNext
+    super.didPushNext();
+    print("==AppLifecycleState===>didPushNext");
+  }
+
 }

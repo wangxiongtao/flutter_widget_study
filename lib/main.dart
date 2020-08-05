@@ -25,7 +25,10 @@ import 'package:flutter_dawn_app/page/MySomeBox.dart';
 import 'package:flutter_dawn_app/page/MyTabBar.dart';
 import 'package:flutter_dawn_app/page/MyTabBarDefault.dart';
 import 'package:flutter_dawn_app/page/MyText.dart';
+import 'package:flutter_dawn_app/util/RouteObserverUtil.dart';
 import 'package:flutter_dawn_app/util/ToastUtil.dart';
+import 'package:flutter_dawn_app/util/my_lifecycle_state.dart';
+import 'package:flutter_page_tracker/flutter_page_tracker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:page_life_cycle/page_life_cycle.dart';
 
@@ -35,8 +38,9 @@ void main() {
   runApp(new MyList());
 }
 
-class MyList extends StatelessWidget{
+class MyList extends StatelessWidget with RouteAware{
   final List<String> list=[];
+  static final RouteObserver observer=new RouteObserver();
   MyList(){
     list.add("MyContainer");
     list.add("MyText");
@@ -62,13 +66,15 @@ class MyList extends StatelessWidget{
     list.add("下拉刷新组件");
     list.add("router-页面跳转以及返回");
     list.add("MyLifecycle");
-
   }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+
     return MaterialApp(
-        navigatorObservers: [PageNavigatorObserver()],
+//        navigatorObservers: [PageNavigatorObserver()],
+      navigatorObservers: [observer],
         routes:<String, WidgetBuilder>{
           '/MyRouter': (BuildContext context) => MyRouter(),
           '/MiddlePage': (BuildContext context) => MiddlePage(),
@@ -108,6 +114,14 @@ class MyList extends StatelessWidget{
           return w;
         });
   }
+
+  @override
+  void didPush() {
+    // TODO: implement didPush
+    super.didPush();
+    print("==AppLifecycleState===>didPush");
+  }
+
 
 }
 
@@ -194,4 +208,34 @@ _clickItem(BuildContext context,int index){
   }
   Navigator.push(context, new MaterialPageRoute(builder: builder));
 }
+class My extends StatefulWidget {
+  @override
+  _MyState createState() => _MyState();
+}
+
+class _MyState extends State<My> with RouteAware {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+  @override
+  void didPop() {
+    // TODO: implement didPop
+    super.didPop();
+    print("==AppLifecycleState===>didPop");
+  }
+  @override
+  void didPopNext() {
+    // TODO: implement didPopNext
+    super.didPopNext();
+    print("==AppLifecycleState===>didPopNext");
+  }
+  @override
+  void didPushNext() {
+    // TODO: implement didPushNext
+    super.didPushNext();
+    print("==AppLifecycleState===>didPushNext");
+  }
+}
+
 
