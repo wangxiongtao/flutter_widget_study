@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dawn_app/page/BaseMaterialApp.dart';
+import 'package:flutter_dawn_app/page/MyNestScrollView.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 /// 创建时间：2020/8/4 
@@ -52,6 +53,7 @@ class _MyPullToRefreshState extends State<MyPullToRefresh> {
         onLoading: () {
           _onLoadMore();
         },
+//        child: MyNestScrollView(),
 
         child: ListView.builder(
             itemCount: list.length,
@@ -82,6 +84,7 @@ class _MyPullToRefreshState extends State<MyPullToRefresh> {
       list.add("value");
       refreshController.refreshCompleted();
       print('延时3s执行--------------------------');
+      Navigator.of(context).pushNamed("/MyPullToRefresh");
     });
 
 

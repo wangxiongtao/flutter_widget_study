@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dawn_app/page/BaseMaterialApp.dart';
 import 'package:flutter_dawn_app/util/RouteObserverUtil.dart';
 import 'package:flutter_dawn_app/util/my_lifecycle_state.dart';
-import 'package:flutter_page_tracker/flutter_page_tracker.dart';
 
 import '../main.dart';
 

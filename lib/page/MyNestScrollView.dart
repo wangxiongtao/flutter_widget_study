@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart' as extend;
 import 'package:flutter/material.dart';
 import 'package:flutter_dawn_app/page/BaseMaterialApp.dart';
 import 'package:flutter_dawn_app/page/MyBanner.dart';
@@ -24,11 +25,19 @@ class _MyNestScrollviewState extends State<MyNestScrollView>
     super.initState();
     _tabController = TabController(vsync: this, length: 2);
   }
-
+  _onRefresh() async{
+    return await Future.delayed(Duration(seconds: 2));
+  }
   @override
   Widget build(BuildContext context) {
     return BaseMaterialApp(
-      body: _getNestScrollView(),
+      body: extend.NestedScrollViewRefreshIndicator(
+        onRefresh:(){
+          return _onRefresh();
+        } ,
+        child: _getNestScrollView(),
+
+      ),
     );
   }
 
@@ -36,14 +45,25 @@ class _MyNestScrollviewState extends State<MyNestScrollView>
     return DefaultTabController(
         length: 2,
         child: Scaffold(
-            body: NestedScrollView(
+            body: extend.NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return _getHeadbuilder(context, innerBoxIsScrolled);
           },
-          body: TabBarView(
-            children: <Widget>[
-              NestTabBarViewItem("1", TabPage1()),
-              NestTabBarViewItem("2", Page2()),
+          body: Column(
+            children: [
+              Text("1111"),
+              Expanded(
+                child: TabBarView(
+                  children: <Widget>[
+
+                    NestTabBarViewItem("1", TabPage1()),
+                    NestTabBarViewItem("2", Page2()),
+                  ],
+                ),
+              )
+
+
+
             ],
           ),
 //          body: TabBarView(
@@ -176,12 +196,18 @@ class _MyNestScrollviewState extends State<MyNestScrollView>
           pinned: true,
           toolbarHeight: 0,
 
-          bottom: TabBar(
-            indicatorColor: Colors.black,
-            indicatorSize: TabBarIndicatorSize.label,
-            tabs: _tabs.map((tab) => Tab(text: tab)).toList(),
-//            controller: _tabController,
-          ),
+//          bottom: PreferredSize(
+//            child: TabBar(
+//              indicatorColor: Colors.black,
+//              indicatorSize: TabBarIndicatorSize.label,
+//              tabs: _tabs.map((tab) => Tab(text: tab)).toList(),
+////            controller: _tabController,
+//            ),
+//            preferredSize: Size.fromHeight(48),
+//          ),
+          
+          
+          
 
 //                floating: true,
 //                snap: true,
@@ -238,7 +264,7 @@ class MyTabPage1State extends State<TabPage1> {
           //创建列表项
           return Container(
             alignment: Alignment.center,
-            color: Colors.lightBlue[100 * (index % 9)],
+            color: Colors.lightBlue[100 * (index % 100)],
             child: new Text('list item $index'),
           );
         }, childCount: childCount //50个列表项;

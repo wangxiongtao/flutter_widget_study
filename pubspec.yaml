@@ -37,8 +37,8 @@ dependencies:
   logger: any  #for logging purpose
   pull_to_refresh: any
   flutter_easyrefresh: any
-  page_life_cycle: any
   flutter_page_tracker: any
+  extended_nested_scroll_view: any
 
 
 

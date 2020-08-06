@@ -6,6 +6,7 @@ import 'package:flutter_dawn_app/page/MyBottomBar.dart';
 import 'package:flutter_dawn_app/page/MyBottomNavigationBar.dart';
 import 'package:flutter_dawn_app/page/MyButton.dart';
 import 'package:flutter_dawn_app/page/MyContainer.dart';
+import 'package:flutter_dawn_app/page/MyCustomScrollView.dart';
 import 'package:flutter_dawn_app/page/MyCustomerTabBar.dart';
 import 'package:flutter_dawn_app/page/MyDialog.dart';
 import 'package:flutter_dawn_app/page/MyGridView.dart';
@@ -18,24 +19,22 @@ import 'package:flutter_dawn_app/page/MyListView.dart';
 import 'package:flutter_dawn_app/page/MyNestScrollView.dart';
 import 'package:flutter_dawn_app/page/MyProgressIndicator.dart';
 import 'package:flutter_dawn_app/page/MyProvider.dart';
+import 'package:flutter_dawn_app/page/MyProvider2.dart';
 import 'package:flutter_dawn_app/page/MyPullToRefresh.dart';
+import 'package:flutter_dawn_app/page/MyPullToRefresh2.dart';
 import 'package:flutter_dawn_app/page/MyRouter.dart';
 import 'package:flutter_dawn_app/page/MySlivers.dart';
 import 'package:flutter_dawn_app/page/MySomeBox.dart';
 import 'package:flutter_dawn_app/page/MyTabBar.dart';
 import 'package:flutter_dawn_app/page/MyTabBarDefault.dart';
 import 'package:flutter_dawn_app/page/MyText.dart';
-import 'package:flutter_dawn_app/util/RouteObserverUtil.dart';
 import 'package:flutter_dawn_app/util/ToastUtil.dart';
-import 'package:flutter_dawn_app/util/my_lifecycle_state.dart';
-import 'package:flutter_page_tracker/flutter_page_tracker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:page_life_cycle/page_life_cycle.dart';
 
 void main() {
 //  debugPaintSizeEnabled=true;
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.transparent));
-  runApp(new MyList());
+  runApp(MyList());
 }
 
 class MyList extends StatelessWidget with RouteAware{
@@ -66,31 +65,40 @@ class MyList extends StatelessWidget with RouteAware{
     list.add("下拉刷新组件");
     list.add("router-页面跳转以及返回");
     list.add("MyLifecycle");
+    list.add("MyProvider2");
+    list.add("MyCustomScrollView");
   }
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
 
-    return MaterialApp(
+    return  ShareMyDataWidget(
+        11,MaterialApp(
+      theme: ThemeData(
+        primaryColor: Colors.deepPurple,
+      ),
 //        navigatorObservers: [PageNavigatorObserver()],
       navigatorObservers: [observer],
-        routes:<String, WidgetBuilder>{
-          '/MyRouter': (BuildContext context) => MyRouter(),
-          '/MiddlePage': (BuildContext context) => MiddlePage(),
-          '/MyLifecycle': (BuildContext context) => MyLifecycle(),
-        },
-      home: Scaffold(
+      routes:<String, WidgetBuilder>{
+        '/MyRouter': (BuildContext context) => MyRouter(),
+        '/MiddlePage': (BuildContext context) => MiddlePage(),
+        '/MyLifecycle': (BuildContext context) => MyLifecycle(),
+        '/MyPullToRefresh': (BuildContext context) => MyPullToRefresh2(),
+      },
+      home:  Scaffold(
         appBar: new AppBar(title: new Text("DEMO"),backgroundColor:Colors.orangeAccent),
         body:WillPopScope(
-            child: _getListView(),
+          child:  _getListView(),
           onWillPop: ()async{
-              ToastUtil.toast("clickBack");
-            return false;//false不执行返回操作
+            ToastUtil.toast("clickBack");
+            return true;//false不执行返回操作
           },
         ) ,
       ),
-    );
+    )
+    ) ;
+
   }
   Widget _getListView(){
     return ListView.separated(
@@ -203,6 +211,14 @@ _clickItem(BuildContext context,int index){
       break;
     case 23:
       builder=(context)=>MyLifecycle();
+//      Navigator.pushNamed(context, "/MyLifecycle");
+      break;
+    case 24:
+      builder=(context)=>MyProvider2();
+//      Navigator.pushNamed(context, "/MyLifecycle");
+      break;
+    case 25:
+      builder=(context)=>MyCustomScrollView();
 //      Navigator.pushNamed(context, "/MyLifecycle");
       break;
   }
