@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dawn_app/page/BaseMaterialApp.dart';
+import 'package:flutter_dawn_app/page/MyNotice.dart';
 import 'package:flutter_dawn_app/page/MyProvider2.dart';
 import 'package:flutter_dawn_app/util/ToastUtil.dart';
 
@@ -37,13 +38,14 @@ class _MyRouterState extends State<MyRouter> {
           RaisedButton(
             child: Text("跳转到下一页Page1=="),
             onPressed: (){
-              _openPage(MiddlePage(data: 100,));
+              _openPage(MyNotice());
+
             },
           ),
           RaisedButton(
             child: Text("跳转到下一页,同时当前页面关闭"),
             onPressed: (){
-              _openPage2(PageNext());
+              _openPage2(MyNotice());
             },
           ),
 
@@ -148,8 +150,8 @@ class _PageNextState extends State<PageNext> {
           RaisedButton(
             child: Text("返回到首页"),
             onPressed: (){
-
-              Future.delayed(Duration.zero).then((value) =>  Navigator.popUntil(context, ModalRoute.withName("/")));
+              Navigator.of(context).popUntil((route) => route.isFirst);
+//              Future.delayed(Duration.zero).then((value) =>  Navigator.popUntil(context, ModalRoute.withName("/MyRouter")));
 
 //              Navigator.of(context).popUntil((route) => route.isActive);
 //              Navigator.of(context).pushNamedAndRemoveUntil("/",(route){

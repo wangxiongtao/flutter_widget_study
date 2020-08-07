@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dawn_app/model/ShowCount.dart';
 import 'package:flutter_dawn_app/page/MyBanner.dart';
 import 'package:flutter_dawn_app/page/MyBottomBar.dart';
 import 'package:flutter_dawn_app/page/MyBottomNavigationBar.dart';
@@ -17,6 +20,7 @@ import 'package:flutter_dawn_app/page/MyInput.dart';
 import 'package:flutter_dawn_app/page/MyLifecycle.dart';
 import 'package:flutter_dawn_app/page/MyListView.dart';
 import 'package:flutter_dawn_app/page/MyNestScrollView.dart';
+import 'package:flutter_dawn_app/page/MyNotice.dart';
 import 'package:flutter_dawn_app/page/MyProgressIndicator.dart';
 import 'package:flutter_dawn_app/page/MyProvider.dart';
 import 'package:flutter_dawn_app/page/MyProvider2.dart';
@@ -28,13 +32,25 @@ import 'package:flutter_dawn_app/page/MySomeBox.dart';
 import 'package:flutter_dawn_app/page/MyTabBar.dart';
 import 'package:flutter_dawn_app/page/MyTabBarDefault.dart';
 import 'package:flutter_dawn_app/page/MyText.dart';
+import 'package:flutter_dawn_app/page/MyTouchEvent.dart';
 import 'package:flutter_dawn_app/util/ToastUtil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
 
 void main() {
 //  debugPaintSizeEnabled=true;
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.transparent));
-  runApp(MyList());
+
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+        create: (c){
+          return ShowCount();
+        },
+      ),
+    ],
+    child: MyList(),
+  ),);
 }
 
 class MyList extends StatelessWidget with RouteAware{
@@ -67,6 +83,9 @@ class MyList extends StatelessWidget with RouteAware{
     list.add("MyLifecycle");
     list.add("MyProvider2");
     list.add("MyCustomScrollView");
+    list.add("MyTouchEvent");
+    list.add("MyNotice");
+    list.add("fluro");
   }
 
   @override
@@ -221,8 +240,16 @@ _clickItem(BuildContext context,int index){
       builder=(context)=>MyCustomScrollView();
 //      Navigator.pushNamed(context, "/MyLifecycle");
       break;
+    case 26:
+      builder=(context)=>MyTouchEvent();
+//      Navigator.pushNamed(context, "/MyLifecycle");
+      break;
+    case 27:
+      builder=(context)=>MyNotice();
+//      Navigator.pushNamed(context, "/MyLifecycle");
+      break;
   }
-  Navigator.push(context, new MaterialPageRoute(builder: builder));
+  Navigator.push(context, new MaterialPageRoute(builder: builder)).then((value) => ToastUtil.toast(value));
 }
 class My extends StatefulWidget {
   @override

@@ -39,6 +39,8 @@ dependencies:
   flutter_easyrefresh: any
   flutter_page_tracker: any
   extended_nested_scroll_view: any
+  provider: any
+
 
 
 
@@ -46,7 +48,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   retrofit_generator: any
-  build_runner: any
+  build_runner: ^1.0.0
+  json_serializable: ^3.2.0
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

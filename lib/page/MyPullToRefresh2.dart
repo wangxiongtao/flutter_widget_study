@@ -14,7 +14,7 @@ class MyPullToRefresh2 extends StatefulWidget {
 }
 
 class _MyPullToRefresh2State extends State<MyPullToRefresh2> {
-  List<String>list=List.generate(20, (index) => "item==${index}");
+  List<String>list=List.generate(20, (index) => "Qitem==${index}");
   @override
   void initState() {
     // TODO: implement initState
@@ -24,21 +24,25 @@ class _MyPullToRefresh2State extends State<MyPullToRefresh2> {
   @override
   Widget build(BuildContext context) {
     return BaseMaterialApp(
-      body: EasyRefresh.builder(
+      body: EasyRefresh(
         topBouncing: false,
         bottomBouncing: false,
-        header: ClassicalHeader(refreshedText: "刷新",overScroll: false),
-        footer: ClassicalFooter(loadingText: "加载",enableInfiniteLoad: false),
+//        header: ClassicalHeader(refreshedText: "刷新",overScroll: false),
+//        footer: ClassicalFooter(loadingText: "加载",),
+        header: MaterialHeader(),
+        footer: MaterialFooter(),
         onRefresh:(){
           return _onRefresh();
         },
         onLoad:(){
           return _onRefresh();
         },
-        builder:(context, physics, header, footer) {
+        child: getListView(),
 
-          return MyNestScrollView();
-        }
+//        builder:(context, physics, header, footer) {
+//
+//          return getListView();
+//        }
       )
     );
   }

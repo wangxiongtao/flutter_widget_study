@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dawn_app/model/ShowCount.dart';
 import 'package:flutter_dawn_app/page/BaseMaterialApp.dart';
 
 /// 创建时间：2020/8/6 
@@ -24,9 +25,11 @@ class _MyProvider2State extends State<MyProvider2> {
       body: Column(
         children: [
           RaisedButton(child: Text("CLICK=父组件==${of().shareData}"),onPressed: (){
-            setState(() {
-              of().shareData++;
-            });
+//            context.read<ShowCount>().increment();
+//            setState(() {
+//              of().shareData++;
+//            }
+//            );
           },),
 //          ShareMyDataWidget(
 //            of().shareData,
