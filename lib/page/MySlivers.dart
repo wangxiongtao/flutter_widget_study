@@ -51,20 +51,23 @@ class _MySliversState extends State<MySlivers>
   Widget _bar() {
     final _tabs = <String>['TabA', 'TabB'];
     return SliverAppBar(
+      automaticallyImplyLeading:false,
+//      leading: Text("111"),
       //标题居中
       //展开高度
       //固定在顶部
-
-      toolbarHeight:0,
-      pinned: true,
-      bottom: TabBar(
+      title:TabBar(
         indicatorColor: Colors.black,
         indicatorSize: TabBarIndicatorSize.label,
         tabs: _tabs
             .map((tab) => Tab(text:tab))
             .toList(),
         controller: _tabController,
-      ),
+      ) ,
+
+//      toolbarHeight:0,
+      pinned: true,
+
 //      floating: true,
 //    snap:true ,
     );

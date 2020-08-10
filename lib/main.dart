@@ -1,9 +1,11 @@
 import 'dart:developer';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dawn_app/model/ShowCount.dart';
+import 'package:flutter_dawn_app/page/MyAnimation.dart';
 import 'package:flutter_dawn_app/page/MyBanner.dart';
 import 'package:flutter_dawn_app/page/MyBottomBar.dart';
 import 'package:flutter_dawn_app/page/MyBottomNavigationBar.dart';
@@ -12,11 +14,13 @@ import 'package:flutter_dawn_app/page/MyContainer.dart';
 import 'package:flutter_dawn_app/page/MyCustomScrollView.dart';
 import 'package:flutter_dawn_app/page/MyCustomerTabBar.dart';
 import 'package:flutter_dawn_app/page/MyDialog.dart';
+import 'package:flutter_dawn_app/page/MyFluro.dart';
 import 'package:flutter_dawn_app/page/MyGridView.dart';
 import 'package:flutter_dawn_app/page/MyIcon.dart';
 import 'package:flutter_dawn_app/page/MyImage.dart';
 import 'package:flutter_dawn_app/page/MyInheritedWidget.dart';
 import 'package:flutter_dawn_app/page/MyInput.dart';
+import 'package:flutter_dawn_app/page/MyJson.dart';
 import 'package:flutter_dawn_app/page/MyLifecycle.dart';
 import 'package:flutter_dawn_app/page/MyListView.dart';
 import 'package:flutter_dawn_app/page/MyNestScrollView.dart';
@@ -38,6 +42,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  _startMethod();
+  _method_C();
 //  debugPaintSizeEnabled=true;
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.transparent));
 
@@ -52,6 +58,46 @@ void main() {
     child: MyList(),
   ),);
 }
+
+
+
+_startMethod() async{
+  _method_A();
+  await _method_B();
+  print("start结束");
+}
+_method_A(){
+  print("A开始执行这个方法~");
+
+}
+
+_method_B() async {
+  print("B开始执行这个方法~");
+  await  print("后面执行这句话~");
+  print("继续执行这句哈11111~");
+}
+
+_method_C(){
+  print("C开始");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class MyList extends StatelessWidget with RouteAware{
   final List<String> list=[];
@@ -86,6 +132,8 @@ class MyList extends StatelessWidget with RouteAware{
     list.add("MyTouchEvent");
     list.add("MyNotice");
     list.add("fluro");
+    list.add("JSON学习,组件的key");
+    list.add("MyAnimation");
   }
 
   @override
@@ -248,8 +296,20 @@ _clickItem(BuildContext context,int index){
       builder=(context)=>MyNotice();
 //      Navigator.pushNamed(context, "/MyLifecycle");
       break;
+    case 28:
+      builder=(context)=>MyFluro("1111");
+//      Navigator.pushNamed(context, "/MyLifecycle");
+      break;
+    case 29:
+      builder=(context)=>MyJson();
+//      Navigator.pushNamed(context, "/MyLifecycle");
+      break;
+    case 30:
+      builder=(context)=>MyAnimation();
+//      Navigator.pushNamed(context, "/MyLifecycle");
+      break;
   }
-  Navigator.push(context, new MaterialPageRoute(builder: builder)).then((value) => ToastUtil.toast(value));
+  Navigator.push(context,  CupertinoPageRoute(builder: builder)).then((value) => ToastUtil.toast(value));
 }
 class My extends StatefulWidget {
   @override

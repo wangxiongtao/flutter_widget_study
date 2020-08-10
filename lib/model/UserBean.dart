@@ -6,8 +6,7 @@ import 'package:json_annotation/json_annotation.dart';
 ///
 
 
-///这个标注是告诉生成器，这个类是需要生成Model类的
-@JsonSerializable()
+
 
 class UseBean{
   UseBean(this.name, this.email);
@@ -17,4 +16,14 @@ class UseBean{
   //不同的类使用不同的mixin即可
 //  factory UseBean.fromJson(Map<String, dynamic> json) => _$UseBeanFromJson(json);
 //  Map<String, dynamic> toJson() => _$UseBeanToJson(this);
+@override
+  bool operator ==(Object other) {
+    // TODO: implement ==
+  print("UseBean===operator==");
+    return this.email==(other as UseBean).email;
+  }
+
+
+
 }
+

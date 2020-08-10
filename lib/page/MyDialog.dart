@@ -3,6 +3,7 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dawn_app/page/BaseMaterialApp.dart';
+import 'package:flutter_dawn_app/page/MyNotice.dart';
 import 'package:flutter_dawn_app/util/ToastUtil.dart';
 
 /// 创建时间：2020/8/4
@@ -45,6 +46,20 @@ class _MyDialogState extends State<MyDialog> {
               child: Text("底部"),
               onPressed: () {
                 _showModalBottomSheet();
+              }),
+          RaisedButton(
+              child: Text("全屏"),
+              onPressed: () {
+                Navigator.of(context).push(PageRouteBuilder(pageBuilder: (context, animation, secondaryAnimation){
+                  return Scaffold(
+                    backgroundColor:Colors.transparent ,
+                    body: Text("11111"),
+                  );
+                },
+//                  fullscreenDialog: true,
+                  opaque: false,
+                  barrierDismissible: false
+                ));
               }),
         ],
       ),
@@ -109,19 +124,7 @@ class _MyDialogState extends State<MyDialog> {
 
     showDialog(
         context: context,
-        builder: (c) => WillPopScope(
-//          onWillPop:  ()async{
-//            return false;
-//          },
-          child: UnconstrainedBox(
-            constrainedAxis: Axis.vertical,
-            child: SizedBox(
-              width: 300,
-              height: 300,
-              child: dialog,
-            ),
-          ))
-        );
+        builder: (c) => MyShowDialog());
   }
 
   Future<int> _showModalBottomSheet() {
@@ -175,40 +178,15 @@ class _MyDialogState extends State<MyDialog> {
 
 
 
-class MyShowDialog extends StatefulWidget {
-
-  @override
-  _MyShowDialogState createState() => _MyShowDialogState();
-}
-
-class _MyShowDialogState extends State<MyShowDialog> {
-  bool _withTree=false;
+class MyShowDialog extends Dialog {
   @override
   Widget build(BuildContext context) {
-    return Checkbox(
-      value: _withTree, //默认不选中
-      onChanged: (bool value) {
-        //_setState方法实际就是该StatefulWidget的setState方法，
-        //调用后builder方法会重新被调用
-        setState(() {
-          //更新选中状态
-          _withTree = !_withTree;
-          Navigator.of(context).pop();
-        });
-      },
+    // TODO: implement build
+    return BaseMaterialApp(
+      body: Text("11111"),
     );
-//    return RaisedButton(
-//      child: Text("12234==$_text"),
-//      onPressed: (){
-//        setState(() {
-//          _text++;
-//        });
-////        ToastUtil.toast("msg111");
-////        (context as Element).markNeedsBuild();
-////        _text++;
-////        ToastUtil.toast("msg");
-//      },
-//    );
   }
 }
+
+
 

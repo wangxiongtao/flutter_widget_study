@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_dawn_app/page/BaseMaterialApp.dart';
 import 'package:flutter_dawn_app/page/MyNotice.dart';
@@ -43,7 +45,7 @@ class _MyRouterState extends State<MyRouter> {
             },
           ),
           RaisedButton(
-            child: Text("跳转到下一页,同时当前页面关闭"),
+            child: Text("跳转到下一页,"),
             onPressed: (){
               _openPage2(MyNotice());
             },
@@ -63,9 +65,10 @@ class _MyRouterState extends State<MyRouter> {
   Navigator.of(context).pushNamed("/MiddlePage");
   }
   _openPage2(Widget page){
-    Navigator.of(context).pushReplacement(new MaterialPageRoute(builder: (context){
+    Navigator.of(context).push(new MaterialPageRoute(builder: (context){
       return page;
-    }));
+    },
+    fullscreenDialog: true));
   }
 
 
