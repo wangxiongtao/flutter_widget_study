@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'BaseMaterialApp.dart';
@@ -56,6 +57,7 @@ class MyButton extends StatefulWidget {
 }
 
 class _MyButtonState extends State<MyButton> {
+  var _checkValue=false;
   @override
   void initState() {
     // TODO: implement initState
@@ -109,7 +111,38 @@ class _MyButtonState extends State<MyButton> {
               child: Text("Submit"),
               shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.0)),
               onPressed: () {},
+            ),
+            PopupMenuButton(
+              offset: Offset(0, 200),
+              child: Text("CLICK"),
+              itemBuilder:(c){
+                return [
+                  PopupMenuItem(
+                    child: Text("1111"),
+                  ),
+                  PopupMenuItem(
+                    child: Text("22222"),
+                  ),
+                ];
+              } ,
+
+            ),
+            SizedBox(
+              width: 100,
+              child:   CheckboxListTile(
+                activeColor: Colors.red,
+                checkColor: Colors.deepPurple,
+                controlAffinity: ListTileControlAffinity.leading,
+                title: Text('老孟'),
+                value: _checkValue,
+                onChanged: (value){
+                  setState(() {
+                    _checkValue = value;
+                  });
+                },
+              ),
             )
+
 
 
 

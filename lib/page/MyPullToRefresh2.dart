@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dawn_app/page/BaseMaterialApp.dart';
 import 'package:flutter_dawn_app/page/MyNestScrollView.dart';
+import 'package:flutter_dawn_app/page/MyPullToRefresh3.dart';
 import 'package:flutter_dawn_app/util/ToastUtil.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
@@ -47,7 +48,11 @@ class _MyPullToRefresh2State extends State<MyPullToRefresh2> {
     );
   }
   _onRefresh() async{
-    return await Future.delayed(Duration(seconds: 2));
+     await Future.delayed(Duration(seconds: 2));
+     Navigator.of(context).push(MaterialPageRoute(
+       builder: (c)=>MyPullToRefresh3()
+     ));
+
   }
 
   Widget getListView(){

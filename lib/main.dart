@@ -13,6 +13,7 @@ import 'package:flutter_dawn_app/page/MyButton.dart';
 import 'package:flutter_dawn_app/page/MyContainer.dart';
 import 'package:flutter_dawn_app/page/MyCustomScrollView.dart';
 import 'package:flutter_dawn_app/page/MyCustomerTabBar.dart';
+import 'package:flutter_dawn_app/page/MyCustomerWidget.dart';
 import 'package:flutter_dawn_app/page/MyDialog.dart';
 import 'package:flutter_dawn_app/page/MyFluro.dart';
 import 'package:flutter_dawn_app/page/MyGridView.dart';
@@ -134,6 +135,7 @@ class MyList extends StatelessWidget with RouteAware{
     list.add("fluro");
     list.add("JSON学习,组件的key");
     list.add("MyAnimation");
+    list.add("MyCustomerWidget");
   }
 
   @override
@@ -306,6 +308,10 @@ _clickItem(BuildContext context,int index){
       break;
     case 30:
       builder=(context)=>MyAnimation();
+//      Navigator.pushNamed(context, "/MyLifecycle");
+      break;
+    case 31:
+      builder=(context)=>MyCustomerWidget();
 //      Navigator.pushNamed(context, "/MyLifecycle");
       break;
   }

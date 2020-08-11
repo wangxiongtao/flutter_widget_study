@@ -17,7 +17,8 @@ class MyLifecycle extends StatefulWidget{
 }
 
 class _MyLifecycleState extends State<MyLifecycle> with RouteAware{
-
+  String str="1111";
+  VoidCallback callback;
   @override
   void initState() {
     // TODO: implement initState
@@ -28,6 +29,11 @@ class _MyLifecycleState extends State<MyLifecycle> with RouteAware{
     WidgetsBinding.instance.addPersistentFrameCallback((timeStamp) {
 //      print(" AppLifecycleState实时 Frame 绘制回调"); //  每帧都回调
     });
+    callback=(){
+      setState(() {
+       str="vvvvvv";
+      });
+    };
 
     print("==AppLifecycleState===>initState");
 //    var dio=HttpUtil().dio;
@@ -114,12 +120,20 @@ class _MyLifecycleState extends State<MyLifecycle> with RouteAware{
     print("==AppLifecycleState===>build==${RouteObserverUtil.routeObserver}");
     return BaseMaterialApp(
 
-      body: RaisedButton(
-        child:Text("1111") ,
-        onPressed:(){
-          Navigator.of(context).pushNamed("/MyRouter");
-        },
-      ),
+      body: Column(
+        children: <Widget>[
+          RaisedButton(
+            child:Text("$str") ,
+            onPressed:(){
+              setState(() {
+                str="asdsadsad";
+              });
+//          Navigator.of(context).pushNamed("/MyRouter");
+            },
+          ),
+          TestLife(str,callback)
+        ],
+      )
     );
   }
 
@@ -130,6 +144,12 @@ class _MyLifecycleState extends State<MyLifecycle> with RouteAware{
     super.didChangeDependencies();
     print("==AppLifecycleState===>didChangeDependencies");
     MyList.observer.subscribe(this, ModalRoute.of(context)); //
+  }
+  @override
+  void didUpdateWidget(MyLifecycle oldWidget) {
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
+    print("==AppLifecycleState===>didUpdateWidget");//父widget中调用setState，子widget的didUpdateWidget就一定会被调用
   }
   @override
   void deactivate() {
@@ -171,4 +191,46 @@ class _MyLifecycleState extends State<MyLifecycle> with RouteAware{
     print("==AppLifecycleState===>didPushNext");
   }
 
+}
+
+class TestLife extends StatefulWidget {
+  String str;
+  VoidCallback callback;
+
+  TestLife(this.str,this.callback);
+
+  @override
+  _TestLifeState createState() => _TestLifeState();
+}
+
+class _TestLifeState extends State<TestLife> {
+  String string;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    string=widget.str;
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 100,
+      width: 100,
+      color: Colors.red,
+      child: RaisedButton(
+        child: Text(string),
+        onPressed: (){
+          widget.callback();
+        },
+      ),
+    );
+  }
+  @override
+  void didUpdateWidget(TestLife oldWidget) {
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
+    string=widget.str;
+    print("==AppLifecycleState===TestLife==>didUpdateWidget");
+
+  }
 }

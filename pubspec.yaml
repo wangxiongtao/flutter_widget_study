@@ -40,6 +40,8 @@ dependencies:
   flutter_page_tracker: any
   extended_nested_scroll_view: any
   provider: any
+  frefresh: any
+  path_provider: any
 
 
 
@@ -48,8 +50,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   retrofit_generator: any
-  build_runner: ^1.0.0
-  json_serializable: ^3.2.0
+  json_model: any
+  build_runner: any
+  json_serializable: any
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
