@@ -24,7 +24,7 @@ class _MyInputState extends State<MyInput> {
       body: Column(
         children: [
           TextField(
-            textInputAction: TextInputAction.search,
+            textInputAction: TextInputAction.next,
             autocorrect: false,
             // 是否自动校正
             autofocus: false,
@@ -48,6 +48,9 @@ class _MyInputState extends State<MyInput> {
             },
             onSubmitted: (value) {
               print("input===onSubmitted=====>" + value); // 当用户确定已经完成编辑时触发
+            },
+            onEditingComplete: (){
+              print("input===onEditingComplete=====>");
             },
 //            style: new TextStyle(color: new Color(Colors.amberAccent.green)),
             // 设置字体样式

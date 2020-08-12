@@ -67,7 +67,7 @@ class _MyAnimationState extends State<MyAnimation>
   Widget build(BuildContext context1) {
     return BaseMaterialApp(
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+//        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           RaisedButton(
             child: Text("动画"),
@@ -77,11 +77,11 @@ class _MyAnimationState extends State<MyAnimation>
 //              await controller.reverse().orCancel;
             },
           ),
-          Container(
-            width: w,
-            height: h,
-            color: Colors.red,
-          ),
+//          Container(
+//            width: 1,
+//            height: 1,
+//            color: Colors.red,
+//          ),
           ScaleTransition(
             scale: animation,
 //            child:  RaisedButton(child: Text("动画"),onPressed: ()=> controller.forward(),),

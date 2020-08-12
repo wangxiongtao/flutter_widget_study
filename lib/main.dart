@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dawn_app/model/ShowCount.dart';
+import 'package:flutter_dawn_app/page/Login.dart';
 import 'package:flutter_dawn_app/page/MyAnimation.dart';
 import 'package:flutter_dawn_app/page/MyBanner.dart';
 import 'package:flutter_dawn_app/page/MyBottomBar.dart';
@@ -34,8 +35,10 @@ import 'package:flutter_dawn_app/page/MyPullToRefresh2.dart';
 import 'package:flutter_dawn_app/page/MyRouter.dart';
 import 'package:flutter_dawn_app/page/MySlivers.dart';
 import 'package:flutter_dawn_app/page/MySomeBox.dart';
+import 'package:flutter_dawn_app/page/MyStream.dart';
 import 'package:flutter_dawn_app/page/MyTabBar.dart';
 import 'package:flutter_dawn_app/page/MyTabBarDefault.dart';
+import 'package:flutter_dawn_app/page/MyTabIndicator.dart';
 import 'package:flutter_dawn_app/page/MyText.dart';
 import 'package:flutter_dawn_app/page/MyTouchEvent.dart';
 import 'package:flutter_dawn_app/util/ToastUtil.dart';
@@ -136,6 +139,8 @@ class MyList extends StatelessWidget with RouteAware{
     list.add("JSON学习,组件的key");
     list.add("MyAnimation");
     list.add("MyCustomerWidget");
+    list.add("MyStream");
+    list.add("Login");
   }
 
   @override
@@ -146,6 +151,24 @@ class MyList extends StatelessWidget with RouteAware{
         11,MaterialApp(
       theme: ThemeData(
         primaryColor: Colors.deepPurple,
+          indicatorColor:Colors.deepOrangeAccent,
+          textSelectionColor: Colors.deepOrangeAccent,
+          cursorColor: Colors.deepOrangeAccent,
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          buttonTheme:ButtonThemeData(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))
+          ),
+          tabBarTheme:TabBarTheme(
+              indicatorSize: TabBarIndicatorSize.label,
+              labelColor:Colors.deepOrangeAccent,
+              labelPadding: EdgeInsets.zero,
+              unselectedLabelColor: Colors.black87,
+              labelStyle: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
+          )
+
+
+
       ),
 //        navigatorObservers: [PageNavigatorObserver()],
       navigatorObservers: [observer],
@@ -312,6 +335,14 @@ _clickItem(BuildContext context,int index){
       break;
     case 31:
       builder=(context)=>MyCustomerWidget();
+//      Navigator.pushNamed(context, "/MyLifecycle");
+      break;
+    case 32:
+      builder=(context)=>MyStream();
+//      Navigator.pushNamed(context, "/MyLifecycle");
+      break;
+    case 33:
+      builder=(context)=>Login();
 //      Navigator.pushNamed(context, "/MyLifecycle");
       break;
   }
