@@ -132,7 +132,7 @@ class _MyDialogState extends State<MyDialog> {
       context: context,
       builder: (BuildContext context) {
         return Container(
-            height: 500,
+            height: 1000,
 
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -182,9 +182,17 @@ class MyShowDialog extends Dialog {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return BaseMaterialApp(
-      body: Text("11111"),
+    return Container(
+      child: Text("1111WEWQEWQEWQ"),
+
     );
+//    return Material(
+//      color: Colors.transparent,
+//      child: MediaQuery.removePadding(
+//        removeTop: true,
+//          context: context,
+//          child: Text("32321esaedad")),
+//    );
   }
 }
 

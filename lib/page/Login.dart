@@ -37,6 +37,8 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
     image = Image.asset(
       "images/icon_logo.png",
     );
+    T2().fun();
+    T2().fun1();
   }
 
   @override
@@ -216,5 +218,22 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
+  }
+}
+
+
+class T{
+  void fun1(){
+    print("====TTT======>");
+  }
+}
+class T1{
+  void fun1(){
+    print("====TTT==1111====>");
+  }
+}
+class T2 with T,T1{
+  void fun(){
+    print("====TTT====2222==>");
   }
 }

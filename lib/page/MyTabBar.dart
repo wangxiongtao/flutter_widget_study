@@ -38,7 +38,7 @@ class MyTabBar extends StatefulWidget {
 }
 
 class _MyTabBarState extends State<MyTabBar>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   final List<Tab> myTabs = <Tab>[
     Tab(
       text: 'LEFT',

@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dawn_app/model/ShowCount.dart';
+import 'package:provider/provider.dart';
 
 import 'BaseMaterialApp.dart';
 
@@ -89,7 +91,7 @@ class _MyButtonState extends State<MyButton> {
                 //TODO
               },
               child: Text(
-                'RaisedButton1',
+                '${Provider.of<ShowCount>(context).count}',
                 style: TextStyle(color: Colors.white, fontSize: 40),
               ),
             ),
@@ -100,6 +102,10 @@ class _MyButtonState extends State<MyButton> {
 //              backgroundColor: Colors.deepPurple,
               shape:  Border(),
               onPressed: () {
+                ShowCount s=new ShowCount();
+                s.increment();
+
+//                Provider.of<ShowCount>(context,listen: false).increment();
                 //click callback
               },
             ),

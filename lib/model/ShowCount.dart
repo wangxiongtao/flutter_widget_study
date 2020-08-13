@@ -6,7 +6,10 @@ import 'package:flutter/material.dart';
 class ShowCount extends ChangeNotifier {
   int count = 0;
   void increment() {
-    count++;
-    notifyListeners();
+    Future.delayed(Duration(seconds: 0),(){
+      count+=3;
+      notifyListeners();
+    });
+
   }
 }

@@ -19,6 +19,8 @@ class _MyAnimationState extends State<MyAnimation>
 
   Animation<double> animationMove;
   AnimationController controllerMove;
+
+
   double w, h;
   int _count = 0;
 
@@ -28,17 +30,17 @@ class _MyAnimationState extends State<MyAnimation>
     super.initState();
     controller = new AnimationController(
         duration: const Duration(milliseconds: 1000), vsync: this);
-    animation = CurvedAnimation(parent: controller, curve: Curves.easeInSine);
-    animation = new Tween(begin: 1.0, end: .5).animate(animation);
-//    animation.addStatusListener((status) {
-//      if (status == AnimationStatus.completed) {
-//        //动画执行结束时反向执行动画
-//        controller.reverse();
-//      } else if (status == AnimationStatus.dismissed) {
-//        //动画恢复到初始状态时执行动画（正向）
-//        controller.forward();
-//      }
-//    });
+//    animation = CurvedAnimation(parent: controller, curve: Curves.easeInSine);
+//    animation = new Tween(begin: 1.0, end: .5).animate(animation);
+    controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        //动画执行结束时反向执行动画
+        controller.reverse();
+      } else if (status == AnimationStatus.dismissed) {
+        //动画恢复到初始状态时执行动画（正向）
+        controller.forward();
+      }
+    });
 
     controllerMove = new AnimationController(
         duration: const Duration(milliseconds: 5000), vsync: this);
@@ -83,7 +85,7 @@ class _MyAnimationState extends State<MyAnimation>
 //            color: Colors.red,
 //          ),
           ScaleTransition(
-            scale: animation,
+            scale: controller,
 //            child:  RaisedButton(child: Text("动画"),onPressed: ()=> controller.forward(),),
             child: Container(
               decoration: BoxDecoration(
@@ -143,7 +145,7 @@ class _MyAnimationState extends State<MyAnimation>
 //              print("==AnimatedBuilder===x===$x");
               return Transform.translate(
                 child: ScaleTransition(
-                  scale: animation,
+                  scale: controller,
 //            child:  RaisedButton(child: Text("动画"),onPressed: ()=> controller.forward(),),
                   child: child,
                 ),

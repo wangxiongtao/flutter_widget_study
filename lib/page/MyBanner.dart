@@ -38,8 +38,9 @@ class _MyBannerState extends State<MyBanner> {
   Widget build(BuildContext context) {
     print("==banner=build=====>");
     return BaseMaterialApp(
-      body: Column(
+      body: Stack(
         children: [
+          _getBanner(),
           RaisedButton(
             child: Text("click1===$play"),
             onPressed: () => {
@@ -65,23 +66,26 @@ class _MyBannerState extends State<MyBanner> {
               }),
             },
           ),
-          RaisedButton(
-            child: Text("play===$play"),
-            onPressed: () => {
-              setState(() {
-                play = !play;
-//                options=CarouselOptions(
-//                    height: 140,
-//                    autoPlay: true,
-//                    viewportFraction: 1,
-//                    onPageChanged: (int index,
-//                        CarouselPageChangedReason reason) =>
-//                    {ToastUtil.toast("$index=======${reason.index}")});
-//                ToastUtil.toast("setState==$play");
-              }),
-            },
-          ),
-          _getBanner()
+//          RaisedButton(
+//            child: Text("play===$play"),
+//            onPressed: () => {
+//              setState(() {
+//                play = !play;
+////                options=CarouselOptions(
+////                    height: 140,
+////                    autoPlay: true,
+////                    viewportFraction: 1,
+////                    onPageChanged: (int index,
+////                        CarouselPageChangedReason reason) =>
+////                    {ToastUtil.toast("$index=======${reason.index}")});
+////                ToastUtil.toast("setState==$play");
+//              }),
+//            },
+//          ),
+//          Expanded(
+//            child: _getBanner() ,
+//          )
+
         ],
       ),
     );
@@ -91,35 +95,61 @@ class _MyBannerState extends State<MyBanner> {
     if(images.length==0){
       return SizedBox(width: 0,height: 0,);
     }
-    return new SizedBox(
-      height: 140,
-      child: Swiper(
-        autoplayDelay: 5000,
+    return Swiper(
+      autoplayDelay: 5000,
 
 
 
 
 //      scale:0.8,
 //      fade:0.8,
-        index: index,
-        onIndexChanged: (index) => setState(() => this.index = index),
-        onTap: (index) => print("=banner===onTap===>$index"),
-        itemBuilder: (c, i) {
-          return CachedNetworkImage(
-            width: 120,
-            fit: BoxFit.cover,
-            imageUrl: images[i],
-            placeholder: (context, url) => CircularProgressIndicator(),
-            errorWidget: (context, url, error) => Icon(Icons.error),
-          );
-        },
-        itemCount: images.length,
-        pagination: new SwiperPagination(
-          builder: DotSwiperPaginationBuilder(size: 8, activeSize: 8),
-        ),
-        autoplay: play,
+      index: index,
+      onIndexChanged: (index) => setState(() => this.index = index),
+      onTap: (index) => print("=banner===onTap===>$index"),
+      itemBuilder: (c, i) {
+        return CachedNetworkImage(
+          width: 120,
+//          fit: BoxFit.cover,
+          imageUrl: images[i],
+          placeholder: (context, url) => CircularProgressIndicator(),
+          errorWidget: (context, url, error) => Icon(Icons.error),
+        );
+      },
+      itemCount: images.length,
+      pagination: new SwiperPagination(
+        builder: DotSwiperPaginationBuilder(size: 8, activeSize: 8),
       ),
+      autoplay: play,
     );
+//    return new SizedBox(
+//      height: 140,
+//      child: Swiper(
+//        autoplayDelay: 5000,
+//
+//
+//
+//
+////      scale:0.8,
+////      fade:0.8,
+//        index: index,
+//        onIndexChanged: (index) => setState(() => this.index = index),
+//        onTap: (index) => print("=banner===onTap===>$index"),
+//        itemBuilder: (c, i) {
+//          return CachedNetworkImage(
+//            width: 120,
+//            fit: BoxFit.cover,
+//            imageUrl: images[i],
+//            placeholder: (context, url) => CircularProgressIndicator(),
+//            errorWidget: (context, url, error) => Icon(Icons.error),
+//          );
+//        },
+//        itemCount: images.length,
+//        pagination: new SwiperPagination(
+//          builder: DotSwiperPaginationBuilder(size: 8, activeSize: 8),
+//        ),
+//        autoplay: play,
+//      ),
+//    );
   }
 
   @override
